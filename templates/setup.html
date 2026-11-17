@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}Initial Setup · MX-UI{% endblock %}
+{% block content %}
+<div class="auth">
+  <aside class="side">
+    <svg class="side-grid" aria-hidden="true" viewBox="0 0 600 800" preserveAspectRatio="none">
+      <g stroke="#18181b" stroke-width="1" fill="none">
+        <line x1="0" y1="160" x2="600" y2="160"/><line x1="0" y1="320" x2="600" y2="320"/>
+        <line x1="0" y1="480" x2="600" y2="480"/><line x1="0" y1="640" x2="600" y2="640"/>
+        <line x1="150" y1="0" x2="150" y2="800"/><line x1="300" y1="0" x2="300" y2="800"/>
+        <line x1="450" y1="0" x2="450" y2="800"/>
+        <circle cx="520" cy="680" r="180" stroke="#27272a"/>
+        <circle cx="520" cy="680" r="110" stroke="#18181b"/>
+      </g>
+    </svg>
+    <div class="side-top">
+      <span class="brand-icon lg"><img src="/static/img/mxui-icon.png" alt="MX-UI"></span>
+      <div>
+        <b class="side-brand">MX-UI</b>
+        <small class="side-ver">v1.0.0 · Control Plane</small>
+      </div>
+    </div>
+    <div class="side-body">
+      <span class="side-kicker">INITIALIZATION</span>
+      <h2>Multi-protocol nodes, unified.</h2>
+      <p>Configure your admin credentials to initialize the Xray Core control plane.</p>
+      <ul class="side-list">
+        <li><span class="dot"></span><span><b>6 Transport Modes</b> · VLESS &amp; Trojan over XHTTP &amp; WS</span></li>
+        <li><span class="dot"></span><span><b>Edge IP Routing</b> · CDN host override &amp; latency probes</span></li>
+        <li><span class="dot"></span><span><b>Offline-First UI</b> · Local fonts, flags &amp; QR generation</span></li>
+      </ul>
+    </div>
+    <small class="side-foot">Created by Muvixo · MIT License</small>
+  </aside>
+  <main class="auth-main">
+    <button type="button" class="ib auth-theme" onclick="toggleAuthTheme()" title="Toggle theme" aria-label="Toggle theme">
+      <svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18Z" fill="currentColor"/></svg>
+    </button>
+    <form id="setupForm" class="form auth-card">
+      <div class="auth-head">
+        <span class="auth-badge">FIRST RUN</span>
+        <h1>Set admin password</h1>
+        <p class="mut">Choose a custom password or use the default preset to secure your panel.</p>
+      </div>
+      <div class="hint" id="setup-hint">
+        <span>Quick preset</span>
+        <button type="button" id="setup-default-btn" onclick="fillDefaultSetup()">Use MUVIXO</button>
+      </div>
+      <label class="field">
+        <span>New password</span>
+        <div class="pw-wrap">
+          <input type="password" id="setup-pw" class="input" required minlength="4" autofocus autocomplete="new-password" placeholder="At least 4 characters">
+          <button type="button" class="pw-eye" onclick="togglePw('setup-pw', this)" aria-label="Show password">
+            <svg class="i" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </label>
+      <label class="field">
+        <span>Confirm password</span>
+        <div class="pw-wrap">
+          <input type="password" id="setup-pw-confirm" class="input" required minlength="4" autocomplete="new-password" placeholder="Repeat password">
+          <button type="button" class="pw-eye" onclick="togglePw('setup-pw-confirm', this)" aria-label="Show password">
+            <svg class="i" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </label>
+      <button type="submit" id="setupButton" class="btn primary block lg">Save and continue</button>
+      <div id="setupErrorMsg" class="alert hidden" role="alert"></div>
+      <div id="setupSuccessMsg" class="ok-msg hidden" role="status"></div>
+      <p class="foot">MX-UI v1.0.0 · Created by Muvixo</p>
+    </form>
+  </main>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+var $ = function (id) { return document.getElementById(id); };
+function toggleAuthTheme() {
+  var d = document.documentElement;
+  d.dataset.theme = d.dataset.theme === 'dark' ? 'light' : 'dark';
+  try { localStorage.setItem('mx-theme', d.dataset.theme); } catch (e) {}
+}
+function togglePw(id, btn) {
+  var inp = $(id);
+  if (!inp) return;
+  var show = inp.type === 'password';
+  inp.type = show ? 'text' : 'password';
+  btn.classList.toggle('active', show);
+}
+function fillDefaultSetup() {
+  $('setup-pw').value = 'MUVIXO';
+  $('setup-pw-confirm').value = 'MUVIXO';
+  var b = $('setup-default-btn');
+  b.textContent = 'MUVIXO filled';
+  setTimeout(function () { b.textContent = 'Use MUVIXO'; }, 1400);
+}
+$('setupForm').onsubmit = async function (e) {
+  e.preventDefault();
+  var btn = $('setupButton'), err = $('setupErrorMsg'), ok = $('setupSuccessMsg');
+  err.classList.add('hidden');
+  ok.classList.add('hidden');
+  var pw = $('setup-pw').value, c = $('setup-pw-confirm').value;
+  var fail = function (m) { err.textContent = m; err.classList.remove('hidden'); };
+  if (pw.length < 4) return fail('Password must be at least 4 characters.');
+  if (pw !== c) return fail('Passwords do not match.');
+  btn.disabled = true;
+  btn.textContent = 'Saving...';
+  try {
+    var res = await fetch('/api/setup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw })
+    });
+    var d = await res.json().catch(function () { return {}; });
+    if (!res.ok) throw new Error(d.detail || 'Setup failed.');
+    ok.textContent = 'Setup complete. Redirecting...';
+    ok.classList.remove('hidden');
+    setTimeout(function () { location.href = '{{ login_path }}'; }, 900);
+  } catch (x) {
+    fail(x.message);
+    btn.disabled = false;
+    btn.textContent = 'Save and continue';
+  }
+};
+</script>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>{% block title %}MX-UI{% endblock %}</title>
+  <link rel="icon" type="image/svg+xml" href="/static/img/mxui-icon.svg">
+  <link rel="icon" type="image/png" href="/static/img/mxui-icon.png">
+  <link rel="preload" href="/static/fonts/Inter-Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/static/fonts/Inter-SemiBold.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/static/fonts/Inter-Bold.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/static/fonts/DejaVuSansMono.ttf" as="font" type="font/ttf" crossorigin>
+  <script>
+    try {
+      var t = localStorage.getItem('mx-theme');
+    } catch (e) {}
+    document.documentElement.dataset.theme = t || 'dark';
+  </script>
+  <link rel="stylesheet" href="/static/css/app.css">
+  {% block head_extra %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  {% block content %}{% endblock %}
+  <div id="toast" class="toast" role="status"></div>
+  <script src="/static/js/utils.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

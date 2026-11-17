@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ label }} · Subscription Info · MX-UI{% endblock %}
+{% block body_class %}portal-page{% endblock %}
+{% block content %}
+<div class="portal-wrap" style="max-width:520px">
+  <div class="portal-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+      <div><h1 style="font-size:22px;font-weight:800">{{ label }}</h1><p class="mut" style="font-size:13px;margin-top:2px">Subscription summary</p></div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="pill {{ 'active' if active else 'inactive' }}"><i></i>{{ 'Active' if active else 'Inactive' }}</span>
+        <button type="button" class="ib sm" onclick="togglePortalTheme()" title="Toggle theme" aria-label="Toggle theme">
+          <svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18Z" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="mini"><small>Usage</small><b class="mono">{{ used_fmt }} / {{ limit_fmt }}</b></div>
+      <div class="mini"><small>Expires</small><b class="mono">{{ expires_at }}</b></div>
+    </div>
+    <div style="display:grid;gap:6px">
+      <span class="sub">Configuration link</span>
+      <div style="display:flex;gap:8px"><input id="u1" readonly class="input mono" value="{{ vless_link }}" style="font-size:12px"><button class="btn primary" onclick="cp('u1',this)">Copy</button></div>
+    </div>
+    <div style="display:grid;gap:6px">
+      <span class="sub">Subscription URL</span>
+      <div style="display:flex;gap:8px"><input id="u2" readonly class="input mono" value="{{ sub_url }}" style="font-size:12px"><button class="btn" onclick="cp('u2',this)">Copy</button></div>
+    </div>
+    <a href="{{ portal_url }}" class="btn primary block" style="text-decoration:none">Open Full Portal &amp; QR</a>
+    <p class="foot">MX-UI v1.0.0 · Created by Muvixo</p>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+function togglePortalTheme() {
+  var d = document.documentElement;
+  d.dataset.theme = d.dataset.theme === 'dark' ? 'light' : 'dark';
+  try { localStorage.setItem('mx-theme', d.dataset.theme); } catch (e) {}
+}
+</script>
+{% endblock %}

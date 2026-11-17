@@ -1,0 +1,45 @@
+{
+  "links": {
+    "6459c8fb-71c3-1ce7-aa8e-f04a98eded56": {
+      "label": "Default Link",
+      "limit_bytes": 0,
+      "used_bytes": 0,
+      "created_at": "2026-11-16T20:00:59.973366",
+      "active": true,
+      "expires_at": null,
+      "note": "Protected default inbound configuration",
+      "is_default": true,
+      "protocol": "all",
+      "fingerprint": "chrome",
+      "alpn": "http/1.1",
+      "sni": "",
+      "cdn_host": "",
+      "region": "Auto",
+      "ip_limit": 0,
+      "speed_limit_bytes": 0,
+      "last_used": null,
+      "ip_pool": []
+    }
+  },
+  "password_hash": "054ed071cc280a01b59d33501523b569f8b657dea7d8e9058fed54987bafc13d",
+  "total_bytes": 0,
+  "saved_at": "2026-11-16T20:00:59.973397",
+  "paths": {
+    "dashboard_path": "/dashboard",
+    "login_path": "/login",
+    "sub_path": "/sub",
+    "setup_path": "/setup"
+  },
+  "settings": {
+    "cdn_host": "",
+    "ws_path": "/ws",
+    "xhttp_path": "/xhttp",
+    "panel_location": {
+      "country_code": "us",
+      "country_name": "United States",
+      "city": "Auto",
+      "flag_url": "/static/flags/us.svg",
+      "auto_detected": true
+    }
+  }
+}

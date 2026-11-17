@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: mx-ui
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: ADMIN_PASSWORD
+        value: MUVIXO
+      - key: TLS_MODE
+        value: auto
+      - key: DATA_DIR
+        value: /app/data
+      - key: PORT
+        value: 8080

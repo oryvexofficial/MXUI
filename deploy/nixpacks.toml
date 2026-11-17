@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["python311", "curl", "unzip"]
+
+[phases.install]
+cmds = [
+  "pip install --no-cache-dir -r requirements.txt",
+  "XRAY_DEST=./bin bash deploy/install_xray.sh"
+]
+
+[start]
+cmd = "bash deploy/start.sh"

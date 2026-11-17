@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+{% block title %}MX-UI v1.0.0 · Control Plane{% endblock %}
+{% block content %}
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+  <symbol id="qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M21 17v4"/></symbol>
+  <symbol id="open" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+  <symbol id="edit" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+  <symbol id="trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/></symbol>
+  <symbol id="reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol>
+  <symbol id="list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+  <symbol id="pulse" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+  <symbol id="conn" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></symbol>
+  <symbol id="cog" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></symbol>
+  <symbol id="out" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
+  <symbol id="theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18Z" fill="currentColor"/></symbol>
+  <symbol id="refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 0-15-6.7L3 8M3 3v5h5M3 12a9 9 0 0 0 15 6.7L21 16M21 21v-5h-5"/></symbol>
+  <symbol id="dl" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+  <symbol id="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/></symbol>
+  <symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+  <symbol id="play" viewBox="0 0 24 24"><path d="m6 3 14 9-14 9Z"/></symbol>
+  <symbol id="ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="updown" viewBox="0 0 24 24"><path d="M7 15V5M7 5l-3 3M7 5l3 3M17 9v10M17 19l-3-3M17 19l3-3"/></symbol>
+  <symbol id="layers" viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/></symbol>
+</defs></svg>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-icon"><img src="/static/img/mxui-icon.png" alt="MX-UI"></span>
+      <div>MX-UI<small>v1.0.0 · {{ platform_name }}</small></div>
+      <span class="pill ok hide-m"><i></i><span id="xray-status-pill">Online</span></span>
+      <span class="loc-badge hide-m"><img id="panel-flag-img" class="flag-icon" src="{{ panel_location.flag_url or '/static/flags/us.svg' }}" alt="{{ panel_location.country_code or 'us' }}"><span id="panel-location-text">{{ panel_location.country_name or 'United States' }}</span></span>
+    </div>
+    <div class="tools">
+      <button class="ib" onclick="toggleModal('connectionsModal',true)" title="Connections &amp; Activity" aria-label="Connections"><svg class="i"><use href="#conn"/></svg></button>
+      <button class="ib" onclick="toggleModal('ipSuggestModal',true)" title="Edge IP Suggestions" aria-label="Edge IPs"><svg class="i"><use href="#list"/></svg></button>
+      <button class="ib" onclick="toggleModal('healthModal',true)" title="Health Check" aria-label="Health check"><svg class="i"><use href="#pulse"/></svg></button>
+      <button class="ib" onclick="toggleModal('databaseModal',true)" title="Database" aria-label="Database"><svg class="i"><use href="#db"/></svg></button>
+      <button class="ib" onclick="toggleModal('settingsModal',true)" title="Settings" aria-label="Settings"><svg class="i"><use href="#cog"/></svg></button>
+      <span class="tools-sep" aria-hidden="true"></span>
+      <button class="ib" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme"><svg class="i"><use href="#theme"/></svg></button>
+      <button class="ib danger" onclick="goLogin()" title="Log out" aria-label="Log out"><svg class="i"><use href="#out"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap dash-main">
+  <section class="panel stats" aria-label="Totals">
+    <div class="stat">
+      <div class="stat-top"><small>Traffic</small><svg class="i"><use href="#updown"/></svg></div>
+      <b id="total-traffic" class="mono">0.0 MB</b>
+      <span class="stat-sub">All-time relayed</span>
+    </div>
+    <div class="stat">
+      <div class="stat-top"><small>Total Usage</small><svg class="i"><use href="#db"/></svg></div>
+      <b id="total-usage" class="mono">0.00 GB</b>
+      <span class="stat-sub">Combined quota</span>
+    </div>
+    <div class="stat">
+      <div class="stat-top"><small>Inbounds</small><svg class="i"><use href="#layers"/></svg></div>
+      <b id="total-inbounds" class="mono">0</b>
+      <span class="stat-sub">Configured nodes</span>
+    </div>
+    <div class="stat">
+      <div class="stat-top"><small>Active Connections</small><svg class="i"><use href="#pulse"/></svg></div>
+      <b id="active-connections" class="mono">0</b>
+      <span class="stat-sub">Live tunnels</span>
+    </div>
+  </section>
+
+  <section aria-label="System diagnostics">
+    <div class="sec-h">
+      <h2>System Diagnostics</h2>
+      <button class="link-btn" id="toggleSystemBtn" aria-expanded="false" onclick="toggleSystemDetails()">
+        <svg class="i"><use href="#chev"/></svg><span id="toggleSystemText">Show more</span>
+      </button>
+    </div>
+    <div class="panel rings">
+      <div class="ring"><svg viewBox="0 0 40 40"><circle class="bg" cx="20" cy="20" r="16"/><circle id="ring-cpu" class="fg" cx="20" cy="20" r="16" pathLength="100" stroke-dasharray="0 100" style="stroke:var(--acc)"/></svg><div><small>CPU</small><b id="ring-cpu-pct">0%</b><span id="ring-cpu-val" class="mut">--</span></div></div>
+      <div class="ring"><svg viewBox="0 0 40 40"><circle class="bg" cx="20" cy="20" r="16"/><circle id="ring-ram" class="fg" cx="20" cy="20" r="16" pathLength="100" stroke-dasharray="0 100" style="stroke:var(--c2)"/></svg><div><small>RAM</small><b id="ring-ram-pct">0%</b><span id="ring-ram-val" class="mut">--</span></div></div>
+      <div class="ring"><svg viewBox="0 0 40 40"><circle class="bg" cx="20" cy="20" r="16"/><circle id="ring-swap" class="fg" cx="20" cy="20" r="16" pathLength="100" stroke-dasharray="0 100" style="stroke:var(--c3)"/></svg><div><small>Swap</small><b id="ring-swap-pct">0%</b><span id="ring-swap-val" class="mut">--</span></div></div>
+      <div class="ring"><svg viewBox="0 0 40 40"><circle class="bg" cx="20" cy="20" r="16"/><circle id="ring-disk" class="fg" cx="20" cy="20" r="16" pathLength="100" stroke-dasharray="0 100" style="stroke:var(--bad)"/></svg><div><small>Storage</small><b id="ring-disk-pct">0%</b><span id="ring-disk-val" class="mut">--</span></div></div>
+    </div>
+    <div class="exp" id="systemDetailsWrapper">
+      <div>
+        <div class="dg">
+          <div class="panel dc" style="--c:var(--acc)"><h4><i></i>CPU</h4><div class="kv"><span>Load average (1m)</span><span id="cpu-load-avg">--</span></div><div class="kv"><span>Cores</span><span id="cpu-cores-detail">--</span></div><div class="kv"><span>User</span><span id="cpu-user">--</span></div><div class="kv"><span>System</span><span id="cpu-system">--</span></div><div class="kv"><span>Idle</span><span id="cpu-idle">--</span></div></div>
+          <div class="panel dc" style="--c:var(--c2)"><h4><i></i>RAM</h4><div class="kv"><span>Total</span><span id="ram-total-detail">--</span></div><div class="kv"><span>Used</span><span id="ram-used-detail">--</span></div><div class="kv"><span>Free</span><span id="ram-free-detail">--</span></div><div class="kv"><span>Available</span><span id="ram-available-detail">--</span></div><div class="kv"><span>Cached</span><span id="ram-cached-detail">--</span></div></div>
+          <div class="panel dc" style="--c:var(--c3)"><h4><i></i>Swap</h4><div class="kv"><span>Total</span><span id="swap-total-detail">--</span></div><div class="kv"><span>Used</span><span id="swap-used-detail">--</span></div><div class="kv"><span>Free</span><span id="swap-free-detail">--</span></div><div class="kv"><span>Usage</span><span id="swap-usage-detail">--</span></div></div>
+          <div class="panel dc" style="--c:var(--bad)"><h4><i></i>Storage</h4><div class="kv"><span>Total</span><span id="disk-total-detail">--</span></div><div class="kv"><span>Used</span><span id="disk-used-detail">--</span></div><div class="kv"><span>Free</span><span id="disk-free-detail">--</span></div><div class="kv"><span>Usage</span><span id="disk-usage-detail">--</span></div></div>
+          <div class="panel dc" style="--c:var(--c2)"><h4><i></i>Network</h4><div class="kv"><span>Total traffic</span><span id="network-total">--</span></div><div class="kv"><span>Total requests</span><span id="network-requests">--</span></div><div class="kv"><span>Active connections</span><span id="network-connections">--</span></div><div class="kv"><span>Errors</span><span id="network-errors">--</span></div></div>
+          <div class="panel dc" style="--c:var(--acc)"><h4><i></i>System</h4><div class="kv"><span>Location</span><span id="sys-location" style="display:inline-flex;align-items:center;gap:6px"><img id="sys-flag-img" class="flag-icon" src="{{ panel_location.flag_url or '/static/flags/us.svg' }}" alt="flag"><span id="sys-location-text">{{ panel_location.country_name or 'United States' }}</span></span></div>
+          <div class="kv"><span>Uptime</span><span id="sys-uptime">--</span></div><div class="kv"><span>Active configs</span><span id="sys-active-configs">--</span></div><div class="kv"><span>Total configs</span><span id="sys-total-configs">--</span></div><div class="kv"><span>Expired configs</span><span id="sys-expired-configs">--</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" style="padding:0;overflow:hidden" aria-label="Configs">
+    <div class="sec-h" style="padding:18px 20px 0;margin:0 0 14px">
+      <div><h2>Inbounds &amp; Configs</h2><p class="mut" style="font-size:12.5px">VLESS &amp; Trojan · WebSocket &amp; XHTTP</p></div>
+      <div class="sec-r">
+        <input id="search" class="input search" type="search" placeholder="Search configs..." aria-label="Search configs">
+        <button class="btn primary" onclick="toggleModal('inboundModal',true)"><svg class="i"><use href="#plus"/></svg><span>Add config</span></button>
+      </div>
+    </div>
+    <div id="config-list" style="border-top:1px solid var(--line)"></div>
+    <div class="dfoot">
+      <span>MX-UI v1.0.0 · Created by Muvixo</span>
+      <span>Uptime <b id="uptime-display" class="mono">00:00:00</b> · Platform <b style="color:var(--acc)">{{ platform_name }}</b></span>
+    </div>
+  </section>
+</main>
+
+<!-- Add Config Modal -->
+<div id="inboundModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="inboundModal-t">
+  <div class="sheet" tabindex="-1" style="--w:640px">
+    <div class="mh"><div><h3 id="inboundModal-t">Add config</h3><p>Deploy a VLESS or Trojan configuration over WS or XHTTP.</p></div><button class="ib sm" onclick="toggleModal('inboundModal',false)" aria-label="Close"><svg class="i"><use href="#x"/></svg></button></div>
+    <div class="mb">
+      <div class="g2">
+        <label class="field"><span>Name</span><input id="new-label" type="text" class="input" placeholder="e.g. Germany-XHTTP" autocomplete="off"></label>
+        <label class="field"><span>Protocol</span><select id="new-protocol" class="input">
+          <option value="vless-ws">VLESS + WebSocket</option>
+          <option value="vless-xhttp-packet-up">VLESS + XHTTP (packet-up · Recommended)</option>
+          <option value="vless-xhttp-stream-up">VLESS + XHTTP (stream-up)</option>
+          <option value="trojan-ws">Trojan + WebSocket</option>
+          <option value="trojan-xhttp-packet-up">Trojan + XHTTP (packet-up)</option>
+          <option value="trojan-xhttp-stream-up">Trojan + XHTTP (stream-up)</option>
+        </select></label>
+      </div>
+      <div class="g2">
+        <label class="field"><span>Fingerprint (uTLS)</span><select id="new-fp" class="input">
+          <option value="chrome">chrome</option><option value="ios">ios</option><option value="firefox">firefox</option>
+          <option value="safari">safari</option><option value="android">android</option><option value="edge">edge</option>
+          <option value="random">random</option><option value="randomized">randomized</option>
+        </select></label>
+        <label class="field"><span>ALPN (optional)</span><input id="new-alpn" type="text" class="input" placeholder="h2,http/1.1" autocomplete="off"></label>
+      </div>
+      <div class="g2">
+        <label class="field"><span>Traffic limit (MB, 0 = unlimited)</span><input id="new-limit" type="number" class="input" value="0" min="0" step="any"></label>
+        <label class="field"><span>Expiry (days, 0 = never)</span><input id="new-expiry" type="number" class="input" value="0" min="0"></label>
+      </div>
+      <div class="g2">
+        <label class="field"><span>IP limit (0 = unlimited)</span><input id="new-iplimit" type="number" class="input" value="0" min="0"></label>
+        <label class="field"><span>Speed limit (0 = unlimited)</span><div class="inline"><input id="new-speed" type="number" class="input" value="0" min="0" step="0.5"><select id="new-speed-unit" class="input"><option value="MBIT">Mbps</option><option value="KB">KB/s</option><option value="MB">MB/s</option></select></div></label>
+      </div>
+      <div class="g2">
+        <label class="field"><span>CDN / Edge Host (optional)</span><input id="new-cdn" type="text" class="input" placeholder="cdn.yourdomain.com" autocomplete="off"></label>
+        <label class="field"><span>SNI Override (optional)</span><input id="new-sni" type="text" class="input" placeholder="Auto (matches Host)" autocomplete="off"></label>
+      </div>
+      <div class="g2">
+        <label class="field"><span>Region Tag</span><input id="new-region" type="text" class="input" value="Auto" placeholder="EU / US / Asia"></label>
+        <label class="field"><span>Note (optional)</span><input id="new-note" type="text" class="input" placeholder="Internal remarks" autocomplete="off"></label>
+      </div>
+    </div>
+    <div class="mf"><button class="btn" onclick="toggleModal('inboundModal',false)">Cancel</button><button class="btn primary" onclick="createConfig()">Deploy config</button></div>
+  </div>
+</div>
+
+<!-- Edit Config Modal -->
+<div id="editModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="editModal-t">
+  <div class="sheet" tabindex="-1" style="--w:640px">
+    <div class="mh"><div><h3 id="editModal-t">Edit <span id="editNodeTitle" style="color:var(--acc)">config</span></h3><p>Updates apply immediately to Xray Core and subscription links.</p></div><button class="ib sm" onclick="toggleModal('editModal',false)" aria-label="Close"><svg class="i"><use href="#x"/></svg></button></div>
+    <div class="mb">
+      <input type="hidden" id="edit-uuid">
+      <div class="g2">
+        <label class="field"><span>Name</span><input id="edit-label" type="text" class="input" autocomplete="off"></label>
+        <label class="field"><span>Protocol</span><select id="edit-protocol" class="input">
+          <option value="vless-ws">VLESS + WebSocket</option>
+          <option value="vless-xhttp-packet-up">VLESS + XHTTP (packet-up · Recommended)</option>
+          <option value="vless-xhttp-stream-up">VLESS + XHTTP (stream-up)</option>
+          <option value="trojan-ws">Trojan + WebSocket</option>
+          <option value="trojan-xhttp-packet-up">Trojan + XHTTP (packet-up)</option>
+          <option value="trojan-xhttp-stream-up">Trojan + XHTTP (stream-up)</option>
+        </select></label>
+      </div>
+      <div class="g2">
+        <label class="field"><span>Fingerprint (uTLS)</span><select id="edit-fp" class="input">
+          <option value="chrome">chrome</option><option value="ios">ios</option><option value="firefox">firefox</option>
+          <option value="safari">safari</option><option value="android">android</option><option value="edge">edge</option>
+          <option value="random">random</option><option value="randomized">randomized</option>
+        </select></label>
+        <label class="field"><span>ALPN</span><input id="edit-alpn" type="text" class="input" autocomplete="off"></label>
+      </div>
+      <div class="g2">
+        <label class="field"><span>Traffic limit (MB, 0 = unlimited)</span><input id="edit-limit" type="number" class="input" value="0" min="0" step="any"></label>
+        <label class="field"><span>Extend Expiry (days, 0 = keep)</span><input id="edit-expiry" type="number" class="input" value="0" min="0"></label>
+      </div>
+      <div class="g2">
+        <label class="field"><span>IP limit (0 = unlimited)</span><input id="edit-iplimit" type="number" class="input" value="0" min="0"></label>
+        <label class="field"><span>Speed limit (0 = unlimited)</span><div class="inline"><input id="edit-speed" type="number" class="input" value="0" min="0" step="0.5"><select id="edit-speed-unit" class="input"><option value="MBIT">Mbps</option><option value="KB">KB/s</option><option value="MB">MB/s</option></select></div></label>
+      </div>
+      <div class="g2">
+        <label class="field"><span>CDN / Edge Host</span><input id="edit-cdn" type="text" class="input" autocomplete="off"></label>
+        <label class="field"><span>SNI Override</span><input id="edit-sni" type="text" class="input" autocomplete="off"></label>
+      </div>
+      <div class="g2">
+        <label class="field"><span>Region Tag</span><input id="edit-region" type="text" class="input"></label>
+        <label class="field"><span>Note</span><input id="edit-note" type="text" class="input" autocomplete="off"></label>
+      </div>
+    </div>
+    <div class="mf"><button class="btn" onclick="toggleModal('editModal',false)">Discard</button><button class="btn primary" onclick="saveEdit()">Save changes</button></div>
+  </div>
+</div>
+
+<!-- Connections & Activity Modal -->
+<div id="connectionsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="connectionsModal-t">
+  <div class="sheet" tabindex="-1" style="--w:740px">
+    <div class="mh"><div><h3 id="connectionsModal-t">Live Connections &amp; Activity</h3><p>Active tunnel sessions and recent control-plane events.</p></div><button class="ib sm" onclick="toggleModal('connectionsModal',false)" aria-label="Close"><svg class="i"><use href="#x"/></svg></button></div>
+    <div class="mb">
+      <div class="c2"><span class="sub">Active Tunnel Sessions</span><div class="tw"><table class="tbl"><thead><tr><th>Client IP</th><th>Transport</th><th class="r">Relayed</th><th>Started</th></tr></thead><tbody id="connectionsBody"></tbody></table></div></div>
+      <div class="c2"><span class="sub">Recent Activity</span><div class="tw"><table class="tbl"><thead><tr><th>Kind</th><th>Message</th><th>Time</th></tr></thead><tbody id="activityBody"></tbody></table></div></div>
+    </div>
+    <div class="mf"><button class="btn" onclick="loadConnectionsAndActivity()"><svg class="i"><use href="#refresh"/></svg>Refresh</button><button class="btn" onclick="toggleModal('connectionsModal',false)">Close</button></div>
+  </div>
+</div>
+
+<!-- IP Suggest Modal -->
+<div id="ipSuggestModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="ipSuggestModal-t">
+  <div class="sheet" tabindex="-1" style="--w:720px">
+    <div class="mh"><div><h3 id="ipSuggestModal-t">Edge IP Suggestions</h3><p>Assign cross-region CDN edge IPs to your configurations.</p></div><button class="ib sm" onclick="toggleModal('ipSuggestModal',false)" aria-label="Close"><svg class="i"><use href="#x"/></svg></button></div>
+    <div class="mb">
+      <div id="domainStatus" class="note warn"></div>
+      <div id="ipBody" style="display:grid;gap:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span class="sub">Suggested Edge IPs</span><button class="btn sm" onclick="fetchSuggestions()"><svg class="i"><use href="#refresh"/></svg>Refresh</button></div>
+        <div id="suggestList" class="box grid mono"></div>
+        <div class="c2"><span class="sub">Apply to Configs</span><div id="applyTargetList" class="box"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+            <span id="applyStatus" class="mut" style="font-size:12px">Select configs</span>
+            <button class="btn primary sm" id="applySuggestBtn" onclick="applySuggestedIPs()" disabled><svg class="i"><use href="#check"/></svg>Apply to selected</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mf"><button class="btn" onclick="toggleModal('ipSuggestModal',false)">Close</button></div>
+  </div>
+</div>
+
+<!-- Health Modal -->
+<div id="healthModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="healthModal-t">
+  <div class="sheet" tabindex="-1" style="--w:720px">
+    <div class="mh"><div><h3 id="healthModal-t">Node Health Check</h3><p>Probe TCP reachability and latency across primary &amp; edge endpoints.</p></div><button class="ib sm" onclick="toggleModal('healthModal',false)" aria-label="Close"><svg class="i"><use href="#x"/></svg></button></div>
+    <div class="mb">
+      <div id="healthConfigList" class="box"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+        <button class="btn primary" id="healthTestBtn" onclick="testSelectedConfigs()" disabled><svg class="i"><use href="#play"/></svg>Test selected</button>
+        <span id="healthStatus" class="mut" style="font-size:12px">Select configs to test</span>
+      </div>
+      <div id="healthResults"></div>
+    </div>
+    <div class="mf"><button class="btn" onclick="toggleModal('healthModal',false)">Close</button></div>
+  </div>
+</div>
+
+<!-- Database Modal -->
+<div id="databaseModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="databaseModal-t">
+  <div class="sheet" tabindex="-1" style="--w:760px">
+    <div class="mh"><div><h3 id="databaseModal-t">Database &amp; Backup</h3><p>Inspect stored configurations and export a JSON backup.</p></div><button class="ib sm" onclick="toggleModal('databaseModal',false)" aria-label="Close"><svg class="i"><use href="#x"/></svg></button></div>
+    <div class="mb">
+      <div class="g4">
+        <div class="mini"><small>Total configs</small><b id="db-total-configs">0</b></div>
+        <div class="mini"><small>Active configs</small><b id="db-active-configs" style="color:var(--acc)">0</b></div>
+        <div class="mini"><small>Total traffic</small><b id="db-total-traffic">0 B</b></div>
+        <div class="mini"><small>Refreshed</small><b id="db-last-saved" style="font-size:12px">--</b></div>
+      </div>
+      <div class="c2"><span class="sub">All configurations</span><div class="tw"><table class="tbl"><thead><tr><th>Label</th><th>UUID</th><th class="r">Used</th><th class="r">Limit</th><th>Status</th><th class="r">IPs</th></tr></thead><tbody id="dbConfigsBody"></tbody></table></div></div>
+      <button class="btn primary block" onclick="downloadDatabase()"><svg class="i"><use href="#dl"/></svg>Download mx-ui.json</button>
+    </div>
+    <div class="mf"><button class="btn" onclick="toggleModal('databaseModal',false)">Close</button></div>
+  </div>
+</div>
+
+<!-- QR Modal -->
+<div id="qrModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="qrModal-t">
+  <div class="sheet" tabindex="-1" style="--w:640px">
+    <div class="mh"><div><h3 id="qrModal-t">QR Codes</h3><p id="qrTargetLabel">Config</p></div><button class="ib sm" onclick="toggleModal('qrModal',false)" aria-label="Close"><svg class="i"><use href="#x"/></svg></button></div>
+    <div class="mb">
+      <div class="qrs">
+        <div class="qrc"><b style="font-size:13px">Config link</b><div class="qb"><img id="qrImage" alt="Config QR code"></div><p class="mono" id="qrTextPayload"></p><button class="btn sm" onclick="copyText(document.getElementById('qrTextPayload').textContent)"><svg class="i"><use href="#copy"/></svg>Copy link</button></div>
+        <div class="qrc"><b style="font-size:13px">Subscription link</b><div class="qb"><img id="qrSubImage" alt="Subscription QR code"></div><p class="mono" id="qrSubPayload"></p><button class="btn sm" onclick="copyText(document.getElementById('qrSubPayload').textContent)"><svg class="i"><use href="#copy"/></svg>Copy sub</button></div>
+      </div>
+    </div>
+    <div class="mf"><button class="btn" onclick="toggleModal('qrModal',false)">Close</button></div>
+  </div>
+</div>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsModal-t">
+  <div class="sheet" tabindex="-1" style="--w:560px">
+    <div class="mh"><div><h3 id="settingsModal-t">Settings</h3><p>Cross-region CDN routing &amp; admin security.</p></div><button class="ib sm" onclick="toggleModal('settingsModal',false)" aria-label="Close"><svg class="i"><use href="#x"/></svg></button></div>
+    <div class="mb">
+      <div class="c2">
+        <span class="sub">Global CDN / Edge Host</span>
+        <label class="field"><span>Default CDN Domain (optional)</span><input type="text" id="settings-cdn-host" class="input" placeholder="e.g. edge.yourdomain.com"></label>
+        <button class="btn sm" onclick="saveNetworkSettings()">Save network settings</button>
+      </div>
+      <div class="c2">
+        <span class="sub">Change Admin Password</span>
+        <label class="field"><span>Current password</span><div class="pw-wrap"><input type="password" id="settings-current-pw" class="input" autocomplete="current-password"><button type="button" class="pw-eye" onclick="toggleDashPw('settings-current-pw', this)" aria-label="Show password"><svg class="i"><use href="#eye"/></svg></button></div></label>
+        <label class="field"><span>New password</span><div class="pw-wrap"><input type="password" id="settings-new-pw" class="input" placeholder="At least 4 characters" autocomplete="new-password"><button type="button" class="pw-eye" onclick="toggleDashPw('settings-new-pw', this)" aria-label="Show password"><svg class="i"><use href="#eye"/></svg></button></div></label>
+        <label class="field"><span>Confirm new password</span><div class="pw-wrap"><input type="password" id="settings-confirm-pw" class="input" autocomplete="new-password"><button type="button" class="pw-eye" onclick="toggleDashPw('settings-confirm-pw', this)" aria-label="Show password"><svg class="i"><use href="#eye"/></svg></button></div></label>
+        <div id="settingsError" class="alert hidden" role="alert"></div>
+        <button class="btn primary" onclick="changePassword()">Update password</button>
+      </div>
+    </div>
+    <div class="mf"><button class="btn" onclick="toggleModal('settingsModal',false)">Close</button></div>
+  </div>
+</div>
+
+<!-- Confirm & Alert Modals -->
+<div id="confirmModal" class="modal top" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle"><div class="sheet" tabindex="-1" style="--w:380px"><div class="cen"><div class="bdg" id="confirmBadge"><svg class="i"><use href="#alert"/></svg></div><div><h3 id="confirmTitle">Confirm action</h3><p id="confirmMessage" style="margin-top:6px">Are you sure?</p></div><div class="row2"><button class="btn" onclick="_confirmNo()">Cancel</button><button class="btn danger" id="confirmOk" onclick="_confirmYes()">Confirm</button></div></div></div></div>
+<div id="customAlert" class="modal top" role="alertdialog" aria-modal="true" aria-labelledby="alertTitle"><div class="sheet" tabindex="-1" style="--w:380px"><div class="cen"><div class="bdg info"><svg id="alertIcon" class="i"><use href="#info"/></svg></div><div><h3 id="alertTitle">Notification</h3><p id="alertMessage" style="margin-top:6px"></p></div><button class="btn primary block" onclick="toggleModal('customAlert',false)">OK</button></div></div></div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/dashboard.js"></script>
+<script>
+function toggleDashPw(id, btn) {
+  var inp = document.getElementById(id);
+  if (!inp) return;
+  var show = inp.type === 'password';
+  inp.type = show ? 'text' : 'password';
+  btn.classList.toggle('active', show);
+}
+</script>
+{% endblock %}

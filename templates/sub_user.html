@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}{{ label }} · Subscription · MX-UI{% endblock %}
+{% block body_class %}portal-page{% endblock %}
+{% block content %}
+<div class="portal-wrap">
+  <div class="portal-card">
+    <div style="display:flex;align-items:center;gap:12px">
+      <span class="brand-icon"><img src="/static/img/mxui-icon.png" alt="MX-UI"></span>
+      <div style="flex:1;min-width:0"><b>MX-UI</b><small style="display:block;color:var(--mut);font-size:12px">{{ protocol }} · {{ region }}</small></div>
+      <span class="pill {{ 'active' if active else 'inactive' }}"><i></i>{{ 'Active' if active else 'Inactive' }}</span>
+      <button type="button" class="ib sm" onclick="togglePortalTheme()" title="Toggle theme" aria-label="Toggle theme">
+        <svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18Z" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <h1 style="font-size:24px;font-weight:800;word-break:break-word">{{ label }}</h1>
+
+    <div class="portal-qr"><img src="{{ qr_url }}" alt="Subscription QR code"></div>
+
+    <div class="portal-rows">
+      <div><span>Subscription ID</span><span>{{ uuid }}</span></div>
+      <div><span>Usage</span><span>{{ used_fmt }} / {{ limit_fmt }}</span></div>
+      <div><span>Remaining</span><span>{{ remained }}</span></div>
+      <div><span>Last online</span><span>{{ last_online }}</span></div>
+      <div><span>Expiry</span><span>{{ expiry }}</span></div>
+      <div><span>Active IPs ({{ ips_count }})</span><span>{{ ips_display }}</span></div>
+    </div>
+
+    <div class="prog">
+      <div class="t"><span>Quota Usage</span><span class="mono mut">{{ used_fmt }} / {{ limit_fmt }}</span></div>
+      <div class="track"><i style="width: {{ usage_pct }}%;"></i></div>
+      <div class="b"><span>{{ usage_pct }}% used</span><span>{{ remained }} remaining</span></div>
+    </div>
+
+    <div>
+      <div class="sec-h" style="margin-bottom:8px">
+        <b style="font-size:14px">Connection Links</b>
+        <span style="display:flex;gap:8px;align-items:center">
+          <span class="tag acc">{{ applied_ips_count }} edge IP(s)</span>
+          <button class="btn sm" id="copyAllBtn" onclick="copyAllLinks()">Copy all</button>
+        </span>
+      </div>
+      <div class="links-box" id="linksContainer">
+        {% for item in link_items %}
+        <div class="link-row">
+          <span class="tag {{ 'acc' if item.is_primary else '' }}">{{ item.tag }}</span>
+          <input type="text" readonly value="{{ item.uri }}" aria-label="{{ item.tag }}">
+          <button class="btn sm primary" onclick="copyText(this.previousElementSibling.value)">Copy</button>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div style="display:grid;gap:8px">
+      <span class="sub">Subscription URL (v2rayNG / Hiddify / Streisand / Shadowrocket)</span>
+      <div style="display:flex;gap:8px">
+        <input id="subUrlInput" readonly class="input mono" value="{{ sub_url }}" style="font-size:12px">
+        <button class="btn primary" onclick="cp('subUrlInput', this)">Copy</button>
+      </div>
+    </div>
+
+    <p class="foot">MX-UI v1.0.0 · Created by Muvixo</p>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+function togglePortalTheme() {
+  var d = document.documentElement;
+  d.dataset.theme = d.dataset.theme === 'dark' ? 'light' : 'dark';
+  try { localStorage.setItem('mx-theme', d.dataset.theme); } catch (e) {}
+}
+function copyAllLinks() {
+  var inputs = document.querySelectorAll('#linksContainer input[type="text"]');
+  var v = [];
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].value) v.push(inputs[i].value);
+  }
+  if (!v.length) return toast('No links to copy', 'err');
+  copyText(v.join('\n'));
+}
+</script>
+{% endblock %}

@@ -1,0 +1,18 @@
+[Unit]
+Description=MX-UI v1.0.0 VLESS/Trojan Control Plane
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/mxui
+ExecStart=/opt/mxui/deploy/start.sh
+Restart=always
+RestartSec=3
+Environment="PORT=8080"
+Environment="DATA_DIR=/opt/mxui/data"
+Environment="ADMIN_PASSWORD=MUVIXO"
+Environment="TLS_MODE=auto"
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,21 @@
+services:
+  mxui:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: mx-ui
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8080}:8080"
+    environment:
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-MUVIXO}
+      - TLS_MODE=${TLS_MODE:-auto}
+      - PUBLIC_HOST=${PUBLIC_HOST:-}
+      - PUBLIC_CONNECT_PORT=${PUBLIC_CONNECT_PORT:-}
+      - CDN_HOST=${CDN_HOST:-}
+      - DATA_DIR=/data
+    volumes:
+      - mxui_data:/data
+
+volumes:
+  mxui_data:
