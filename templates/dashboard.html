@@ -28,6 +28,7 @@
   <symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
   <symbol id="updown" viewBox="0 0 24 24"><path d="M7 15V5M7 5l-3 3M7 5l3 3M17 9v10M17 19l-3-3M17 19l3-3"/></symbol>
   <symbol id="layers" viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/></symbol>
+  <symbol id="search-ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
 </defs></svg>
 
 <header class="topbar">
@@ -54,22 +55,22 @@
 <main class="wrap dash-main">
   <section class="panel stats" aria-label="Totals">
     <div class="stat">
-      <div class="stat-top"><small>Traffic</small><svg class="i"><use href="#updown"/></svg></div>
+      <div class="stat-top"><small>Traffic</small><span class="stat-ico"><svg class="i"><use href="#updown"/></svg></span></div>
       <b id="total-traffic" class="mono">0.0 MB</b>
       <span class="stat-sub">All-time relayed</span>
     </div>
     <div class="stat">
-      <div class="stat-top"><small>Total Usage</small><svg class="i"><use href="#db"/></svg></div>
+      <div class="stat-top"><small>Total Usage</small><span class="stat-ico"><svg class="i"><use href="#db"/></svg></span></div>
       <b id="total-usage" class="mono">0.00 GB</b>
       <span class="stat-sub">Combined quota</span>
     </div>
     <div class="stat">
-      <div class="stat-top"><small>Inbounds</small><svg class="i"><use href="#layers"/></svg></div>
+      <div class="stat-top"><small>Inbounds</small><span class="stat-ico"><svg class="i"><use href="#layers"/></svg></span></div>
       <b id="total-inbounds" class="mono">0</b>
       <span class="stat-sub">Configured nodes</span>
     </div>
     <div class="stat">
-      <div class="stat-top"><small>Active Connections</small><svg class="i"><use href="#pulse"/></svg></div>
+      <div class="stat-top"><small>Active Connections</small><span class="stat-ico"><svg class="i"><use href="#pulse"/></svg></span></div>
       <b id="active-connections" class="mono">0</b>
       <span class="stat-sub">Live tunnels</span>
     </div>
@@ -107,7 +108,7 @@
     <div class="sec-h" style="padding:18px 20px 0;margin:0 0 14px">
       <div><h2>Inbounds &amp; Configs</h2><p class="mut" style="font-size:12.5px">VLESS &amp; Trojan · WebSocket &amp; XHTTP</p></div>
       <div class="sec-r">
-        <input id="search" class="input search" type="search" placeholder="Search configs..." aria-label="Search configs">
+        <div class="search-wrap"><svg class="i"><use href="#search-ico"/></svg><input id="search" class="input search" type="search" placeholder="Search configs..." aria-label="Search configs"></div>
         <button class="btn primary" onclick="toggleModal('inboundModal',true)"><svg class="i"><use href="#plus"/></svg><span>Add config</span></button>
       </div>
     </div>
